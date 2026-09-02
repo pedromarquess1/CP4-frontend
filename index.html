@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoTrend | E-commerce Sustentável</title>
+
+  <!-- Google Fonts: Poppins & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="sticky-top bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#" onclick="showPage('home')">
+        <i class="fa-solid fa-leaf"></i> EcoTrend
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" id="nav-home" href="#" onclick="showPage('home')">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-categorias" href="#" onclick="showPage('categorias')">Categorias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-produto" href="#" onclick="showPage('produto')">Detalhes do Produto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-contato" href="#" onclick="showPage('contato')">Contato</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-eco position-relative" onclick="openCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PÁGINA 1: HOME -->
+  <main id="page-home" class="page-section active">
+    <!-- Banner Carrossel -->
+    <div id="heroCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200&auto=format&fit=crop');">
+          <div class="carousel-overlay">
+            <div class="container text-white">
+              <span class="badge bg-success mb-2 px-3 py-2 fs-6">Promoção de Primavera</span>
+              <h1 class="display-4 fw-bold">Estilo Consciente, Planeta Vivo</h1>
+              <p class="lead max-w-500">Aproveite até 30% OFF em nossa linha de roupas feitas com 100% algodão orgânico.</p>
+              <button class="btn btn-eco btn-lg mt-2" onclick="showPage('categorias')">Ver Promoções</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop');">
+          <div class="carousel-overlay">
+            <div class="container text-white">
+              <span class="badge bg-success mb-2 px-3 py-2 fs-6">Cuidados Naturais</span>
+              <h1 class="display-4 fw-bold">Beleza Sem Impacto</h1>
+              <p class="lead">Cosméticos veganos, biodegradáveis e livres de crueldade animal.</p>
+              <button class="btn btn-eco btn-lg mt-2" onclick="filterCategory('cat2')">Conhecer Linha</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1200&auto=format&fit=crop');">
+          <div class="carousel-overlay">
+            <div class="container text-white">
+              <span class="badge bg-success mb-2 px-3 py-2 fs-6">Tecnologia Verde</span>
+              <h1 class="display-4 fw-bold">Inovação Sustentável</h1>
+              <p class="lead">Dispositivos movidos a energia solar e feitos com materiais reciclados.</p>
+              <button class="btn btn-eco btn-lg mt-2" onclick="filterCategory('cat4')">Explorar Tech</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- Destaques / Categorias Rápidas -->
+    <div class="container mb-5">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm category-card" onclick="filterCategory('cat1')" role="button">
+            <i class="fa-solid fa-shirt fa-2x text-success mb-2"></i>
+            <h6 class="fw-bold mb-0">Roupas</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm category-card" onclick="filterCategory('cat2')" role="button">
+            <i class="fa-solid fa-pump-soap fa-2x text-success mb-2"></i>
+            <h6 class="fw-bold mb-0">Beleza</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm category-card" onclick="filterCategory('cat3')" role="button">
+            <i class="fa-solid fa-house-chimney-window fa-2x text-success mb-2"></i>
+            <h6 class="fw-bold mb-0">Casa</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm category-card" onclick="filterCategory('cat4')" role="button">
+            <i class="fa-solid fa-solar-panel fa-2x text-success mb-2"></i>
+            <h6 class="fw-bold mb-0">Tecnologia</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Produtos em Destaque -->
+    <section class="container my-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="fw-bold h3 mb-1">Produtos em Destaque</h2>
+          <p class="text-muted mb-0">Os itens mais amados pela nossa comunidade sustentável.</p>
+        </div>
+        <button class="btn btn-outline-eco btn-sm" onclick="showPage('categorias')">Ver Todos</button>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 product-card shadow-sm">
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=500&auto=format&fit=crop" alt="Camiseta Algodão Orgânico">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="badge-eco mb-2 align-self-start">Roupas</span>
+              <h5 class="card-title h6 fw-bold">Camiseta Algodão Orgânico</h5>
+              <p class="text-muted small">100% fibra natural sem agrotóxicos.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold text-success fs-5">R$ 89,90</span>
+                <button class="btn btn-eco btn-sm" onclick="addToCart('Camiseta Algodão Orgânico', 89.90)">
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 product-card shadow-sm">
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?q=80&w=500&auto=format&fit=crop" alt="Kit Escovas de Bambu">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="badge-eco mb-2 align-self-start">Beleza</span>
+              <h5 class="card-title h6 fw-bold">Kit Escovas de Bambu (4 un)</h5>
+              <p class="text-muted small">Biodegradável e cabo anatômico.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold text-success fs-5">R$ 34,90</span>
+                <button class="btn btn-eco btn-sm" onclick="addToCart('Kit Escovas de Bambu', 34.90)">
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 product-card shadow-sm">
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=500&auto=format&fit=crop" alt="Garrafa Térmica Inox">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="badge-eco mb-2 align-self-start">Casa</span>
+              <h5 class="card-title h6 fw-bold">Garrafa Térmica Eco 750ml</h5>
+              <p class="text-muted small">Mantenha a temperatura por 12h.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold text-success fs-5">R$ 79,00</span>
+                <button class="btn btn-eco btn-sm" onclick="addToCart('Garrafa Térmica Eco', 79.00)">
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 product-card shadow-sm">
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=500&auto=format&fit=crop" alt="Carregador Solar">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="badge-eco mb-2 align-self-start">Tecnologia</span>
+              <h5 class="card-title h6 fw-bold">Carregador Powerbank Solar</h5>
+              <p class="text-muted small">Bateria de 10.000mAh recarregável.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold text-success fs-5">R$ 189,90</span>
+                <button class="btn btn-eco btn-sm" onclick="addToCart('Carregador Powerbank Solar', 189.90)">
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PÁGINA 2: CATEGORIAS / LOJA -->
+  <main id="page-categorias" class="page-section container my-4">
+    <div class="row">
+      <aside class="col-md-3 mb-4">
+        <div class="bg-white p-3 filter-card shadow-sm">
+          <h5 class="fw-bold mb-3 border-bottom pb-2">Filtros</h5>
+
+          <div class="mb-4">
+            <label class="fw-semibold mb-2 d-block">Categoria</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cat1" checked>
+              <label class="form-check-label" for="cat1">Roupas & Acessórios</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cat2" checked>
+              <label class="form-check-label" for="cat2">Beleza & Cuidados</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cat3" checked>
+              <label class="form-check-label" for="cat3">Casa Sustentável</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cat4" checked>
+              <label class="form-check-label" for="cat4">Tecnologia Verde</label>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="priceRange" class="fw-semibold mb-2">Preço Máximo: <span id="priceVal">R$ 200</span></label>
+            <input type="range" class="form-range" id="priceRange" min="20" max="300" value="200" oninput="document.getElementById('priceVal').innerText = 'R$ ' + this.value">
+          </div>
+
+          <div class="mb-3">
+            <label class="fw-semibold mb-2 d-block">Marca</label>
+            <select class="form-select form-select-sm">
+              <option selected>Todas as Marcas</option>
+              <option>EcoLife</option>
+              <option>GreenWear</option>
+              <option>BioCare</option>
+              <option>SolarTech</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn btn-eco w-100 btn-sm" id="apply-filters">Aplicar Filtros</button>
+        </div>
+      </aside>
+
+      <section class="col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="fw-bold mb-0">Catálogo de Produtos</h4>
+          <span class="text-muted small catalog-count">Exibindo 6 produtos</span>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 product-card shadow-sm" data-product-card data-category="cat1" data-price="89.90" data-brand="EcoLife">
+              <div class="product-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=500&auto=format&fit=crop" alt="Camiseta Algodão Orgânico">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title h6 fw-bold">Camiseta Algodão Orgânico</h5>
+                <p class="text-muted small">Roupas</p>
+                <div class="mt-auto d-flex align-items-center justify-content-between">
+                  <span class="fw-bold text-success">R$ 89,90</span>
+                  <button class="btn btn-eco btn-sm" onclick="addToCart('Camiseta Algodão Orgânico', 89.90)">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 product-card shadow-sm" data-product-card data-category="cat2" data-price="34.90" data-brand="BioCare">
+              <div class="product-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?q=80&w=500&auto=format&fit=crop" alt="Kit Escovas Bambu">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title h6 fw-bold">Kit Escovas de Bambu</h5>
+                <p class="text-muted small">Beleza</p>
+                <div class="mt-auto d-flex align-items-center justify-content-between">
+                  <span class="fw-bold text-success">R$ 34,90</span>
+                  <button class="btn btn-eco btn-sm" onclick="addToCart('Kit Escovas de Bambu', 34.90)">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 product-card shadow-sm" data-product-card data-category="cat3" data-price="79.00" data-brand="EcoLife">
+              <div class="product-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=500&auto=format&fit=crop" alt="Garrafa Térmica">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title h6 fw-bold">Garrafa Térmica Eco</h5>
+                <p class="text-muted small">Casa</p>
+                <div class="mt-auto d-flex align-items-center justify-content-between">
+                  <span class="fw-bold text-success">R$ 79,00</span>
+                  <button class="btn btn-eco btn-sm" onclick="addToCart('Garrafa Térmica Eco', 79.00)">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 product-card shadow-sm" data-product-card data-category="cat4" data-price="189.90" data-brand="SolarTech">
+              <div class="product-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=500&auto=format&fit=crop" alt="Powerbank Solar">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title h6 fw-bold">Carregador Powerbank Solar</h5>
+                <p class="text-muted small">Tecnologia</p>
+                <div class="mt-auto d-flex align-items-center justify-content-between">
+                  <span class="fw-bold text-success">R$ 189,90</span>
+                  <button class="btn btn-eco btn-sm" onclick="addToCart('Carregador Powerbank Solar', 189.90)">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 product-card shadow-sm" data-product-card data-category="cat2" data-price="29.90" data-brand="BioCare">
+              <div class="product-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=500&auto=format&fit=crop" alt="Shampoo Sólido">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title h6 fw-bold">Shampoo Sólido Natural</h5>
+                <p class="text-muted small">Beleza</p>
+                <div class="mt-auto d-flex align-items-center justify-content-between">
+                  <span class="fw-bold text-success">R$ 29,90</span>
+                  <button class="btn btn-eco btn-sm" onclick="addToCart('Shampoo Sólido Natural', 29.90)">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 product-card shadow-sm" data-product-card data-category="cat1" data-price="149.90" data-brand="GreenWear">
+              <div class="product-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=500&auto=format&fit=crop" alt="Mochila de Cânhamo">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title h6 fw-bold">Mochila Eco Cânhamo</h5>
+                <p class="text-muted small">Roupas e Acessórios</p>
+                <div class="mt-auto d-flex align-items-center justify-content-between">
+                  <span class="fw-bold text-success">R$ 149,90</span>
+                  <button class="btn btn-eco btn-sm" onclick="addToCart('Mochila Eco Cânhamo', 149.90)">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- PÁGINA 3: DETALHES DO PRODUTO -->
+  <main id="page-produto" class="page-section container my-5">
+    <div class="bg-white p-4 rounded shadow-sm">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=700&auto=format&fit=crop" class="img-fluid product-detail-img w-100" alt="Camiseta Algodão Orgânico">
+        </div>
+
+        <div class="col-md-6">
+          <span class="badge bg-success mb-2">Mais Vendido</span>
+          <h2 class="fw-bold mb-2">Camiseta Algodão Orgânico - EcoWear</h2>
+
+          <div class="d-flex align-items-center gap-2 mb-3 text-warning">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span class="text-muted small ms-1">(48 avaliações)</span>
+          </div>
+
+          <h3 class="text-success fw-bold mb-3">R$ 89,90</h3>
+
+          <p class="text-muted mb-4">
+            Produzida com algodão 100% orgânico cultivado sem pesticidas ou fertilizantes químicos. Oferece toque macio, alta durabilidade e baixo impacto hídrico no processo de confecção.
+          </p>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Tamanho:</label>
+              <select class="form-select">
+                <option>P</option>
+                <option selected>M</option>
+                <option>G</option>
+                <option>GG</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Quantidade:</label>
+              <input type="number" id="detail-quantity" class="form-control" value="1" min="1" max="10">
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex">
+            <button class="btn btn-eco btn-lg flex-fill" onclick="addDetailedToCart('Camiseta Algodão Orgânico', 89.90)">
+              <i class="fa-solid fa-bag-shopping me-2"></i>Adicionar ao Carrinho
+            </button>
+            <button class="btn btn-outline-secondary btn-lg" onclick="toggleWishlist(this)">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="d-flex gap-4 text-muted small">
+            <div><i class="fa-solid fa-truck-fast text-success me-1"></i> Frete Grátis acima de R$ 150</div>
+            <div><i class="fa-solid fa-rotate-left text-success me-1"></i> Troca grátis em até 30 dias</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PÁGINA 4: CONTATO -->
+  <main id="page-contato" class="page-section container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold">Fale Conosco</h2>
+            <p class="text-muted">Tem alguma dúvida sobre nossos produtos sustentáveis? Envie uma mensagem!</p>
+          </div>
+
+          <form id="contactForm" onsubmit="submitForm(event)">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label fw-semibold">Nome Completo</label>
+                <input type="text" class="form-control" id="name" placeholder="Seu nome" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-semibold">E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+              </div>
+              <div class="col-12">
+                <label for="subject" class="form-label fw-semibold">Assunto</label>
+                <input type="text" class="form-control" id="subject" placeholder="Ex: Dúvidas sobre entrega" required>
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label fw-semibold">Mensagem</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-eco btn-lg px-5">Enviar Mensagem</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- OFFCANVAS: CARRINHO DE COMPRAS -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold"><i class="fa-solid fa-cart-shopping me-2"></i>Seu Carrinho</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cart-items-container" class="flex-grow-1">
+        <p class="text-muted text-center my-4" id="empty-cart-msg">Seu carrinho está vazio no momento.</p>
+        <ul class="list-group list-group-flush" id="cart-list"></ul>
+      </div>
+
+      <div class="border-top pt-3">
+        <div class="d-flex justify-content-between mb-3">
+          <span class="fw-bold fs-5">Total:</span>
+          <span class="fw-bold fs-5 text-success" id="cart-total">R$ 0,00</span>
+        </div>
+        <button class="btn btn-eco w-100 btn-lg" onclick="checkout()">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <h5 class="text-white fw-bold mb-3"><i class="fa-solid fa-leaf text-success me-2"></i>EcoTrend</h5>
+          <p class="small">Promovendo um estilo de vida sustentável através de produtos ecológicos, éticos e de baixo impacto ambiental.</p>
+        </div>
+
+        <div class="col-6 col-md-2">
+          <h6 class="text-white fw-semibold mb-3">Navegação</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" onclick="showPage('home')">Início</a></li>
+            <li class="mb-2"><a href="#" onclick="showPage('categorias')">Categorias</a></li>
+            <li class="mb-2"><a href="#" onclick="showPage('produto')">Produtos</a></li>
+            <li class="mb-2"><a href="#" onclick="showPage('contato')">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h6 class="text-white fw-semibold mb-3">Políticas & Ajuda</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#">Termos de Uso</a></li>
+            <li class="mb-2"><a href="#">Política de Privacidade</a></li>
+            <li class="mb-2"><a href="#">Entregas & Devoluções</a></li>
+            <li class="mb-2"><a href="#">Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <h6 class="text-white fw-semibold mb-3">Redes Sociais</h6>
+          <div class="d-flex gap-3 fs-5">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+          </div>
+          <p class="small mt-3 mb-0">Atendimento: contato@ecotrend.com.br</p>
+        </div>
+      </div>
+
+      <hr class="my-4 border-secondary">
+
+      <div class="text-center small text-muted">
+        <p class="mb-0">Check-Point 04 | Front-end Design - Prof. Lucas Sousa | Copyright © 2026 EcoTrend</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
