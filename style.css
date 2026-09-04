@@ -20,7 +20,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Ocultação e Controle das Páginas */
 .page-section {
   display: none;
 }
@@ -29,14 +28,13 @@ h1, h2, h3, h4, h5, .navbar-brand {
   display: block;
 }
 
-/* Navbar Customizada */
 .navbar {
   transition: all 0.3s ease;
 }
 
 .navbar-brand {
   font-weight: 700;
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
   font-size: 1.5rem;
 }
 
@@ -47,11 +45,11 @@ h1, h2, h3, h4, h5, .navbar-brand {
   transition: color 0.2s;
 }
 
-.nav-link:hover, .nav-link.active {
-  color: var(--primary-color) !important;
+header .navbar .nav-link:hover,
+header .navbar .nav-link.active {
+  color: var(--primary-color);
 }
 
-/* Botões Verdes Customizados */
 .btn-eco {
   background-color: var(--primary-color);
   color: #fff;
@@ -74,7 +72,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   color: #fff;
 }
 
-/* Carrossel de Destaques */
 .carousel-item {
   height: 450px;
   background-size: cover;
@@ -93,7 +90,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   max-width: 500px;
 }
 
-/* Visual e Interatividade dos Cards */
 .category-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -101,7 +97,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
 
 .category-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .product-card {
@@ -111,7 +107,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 /* Grade nativa para organizar os produtos em diferentes tamanhos de tela. */
@@ -121,9 +117,14 @@ h1, h2, h3, h4, h5, .navbar-brand {
   gap: 1.5rem;
 }
 
-/* As colunas do Bootstrap deixam de controlar os cards nesta grade. */
 .grade-produtos > div {
   width: 100%;
+  padding: 0;
+}
+
+.grade-produtos > [class*="col-"] {
+  width: 100%;
+  max-width: 100%;
   padding: 0;
 }
 
@@ -144,7 +145,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
 }
 
 .product-card.hidden {
-  display: none !important;
+  display: none;
 }
 
 .filter-card {
@@ -174,7 +175,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   font-weight: 600;
 }
 
-/* Rodapé */
 footer {
   background-color: #1a252f;
   color: #a0aec0;
