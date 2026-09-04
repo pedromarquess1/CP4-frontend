@@ -116,7 +116,7 @@ function updateCartUI() {
                 <h6 class="my-0 small fw-bold">${item.name}</h6>
                 <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')}</small>
             </div>
-            <button class="btn btn-sm btn-outline-danger border-0" onclick="removeFromCart(${index})">
+            <button class="btn btn-sm btn-outline-danger border-0" onclick="removeFromCart(${index})" aria-label="Remover ${item.name} do carrinho">
                 <i class="fa-solid fa-trash-can"></i>
             </button>
         `;
