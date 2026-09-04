@@ -114,6 +114,35 @@ h1, h2, h3, h4, h5, .navbar-brand {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
+/* Grade nativa para organizar os produtos em diferentes tamanhos de tela. */
+.grade-produtos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* As colunas do Bootstrap deixam de controlar os cards nesta grade. */
+.grade-produtos > div {
+  width: 100%;
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .grade-produtos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .grade-destaques {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grade-catalogo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .product-card.hidden {
   display: none !important;
 }
