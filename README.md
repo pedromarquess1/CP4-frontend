@@ -26,14 +26,13 @@ Criar uma interface de e-commerce sustentável para apresentar produtos de difer
 - Font Awesome
 - Google Fonts
 
-## Integrantes
+## Integrantes - 1ESPV
 
-- Pedro Henrique Marques 
-- Evandro Marcondes 
-- Renan Queiroz
-- Raphael de Oliveira
-- Enzo Alves
-
+- Pedro Henrique Marques - rm569307
+- Evandro Marcondes - rm572473
+- Renan Queiroz - rm569077
+- Raphael de Oliveira - rm571065
+- Enzo Alves -rm569665
 
 ## Observação
 
